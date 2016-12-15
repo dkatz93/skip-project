@@ -169,3 +169,12 @@ html::after {
 .bar-name:hover {
   text-decoration: none;
   color: white; }
+
+#login-form-group {
+  text-align: left;
+  margin-left: 0;
+  width: 300px; }
+
+.login-form {
+  text-align: left;
+  padding-left: 10px; }

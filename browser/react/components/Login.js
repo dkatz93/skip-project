@@ -1,48 +1,62 @@
-import React from 'react';
+import React, { Component } from 'react';
+import axios from 'axios';
 
-
-class Login extends React.Component {
+class LoginForm extends Component {
   constructor(props) {
     super(props);
-    this.onLoginSubmit = this.onLoginSubmit.bind(this);
+    this.state = {
+      email: '',
+      password: ''
+    }
   }
 
-  onLoginSubmit(event) {
-    const { message } = this.props;
-    event.preventDefault();
+  updateInput(field, event) {
+    this.setState({
+      [field]: event.target.value
+    })
+  }
+
+  login(e) {
+    e.preventDefault();
+    axios.post('/api/sessions', {
+      email: this.state.email,
+      password: this.state.password
+    })
+    .then(res => window.location.href = '/posts')
+    .catch(err => console.log('theres an error in the server'));
   }
 
   render() {
-    const { message } = this.props;
     return (
-      <div className="signin-container">
-        <div className="buffer local">
-          <form onSubmit={this.onLoginSubmit}>
-            <div className="form-group">
-              <label>email</label>
-              <input
-                name="email"
-                type="email"
-                className="form-control"
-                required
-              />
-            </div>
-            <div className="form-group">
-                <label>password</label>
-                <input
-                  name="password"
-                  type="password"
-                  className="form-control"
-                  required
-                />
-            </div>
-            <button type="submit" className="btn btn-block btn-primary">{message}</button>
-          </form>
-        </div>
+      <div>
+        <form className="login-form" onSubmit={this.login.bind(this)}>
+          <h1>Login</h1>
+          <div className="form-group" id="login-form-group">
+            <label htmlFor="exampleInputEmail1">Email address</label>
+            <input 
+              onChange={this.updateInput.bind(this, 'email')} 
+              value={this.state.email}
+              type="email"
+              className="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              placeholder="Enter email" />
+          </div>
+          <div className="form-group" id="login-form-group">
+            <label htmlFor="exampleInputPassword1">Password</label>
+            <input
+              onChange={this.updateInput.bind(this,'password')}
+              value={this.state.password}
+              type="password"
+              className="form-control"
+              id="exampleInputPassword1"
+              placeholder="Password"/>
+          </div>
+          <button type="submit" className="btn btn-primary">Login</button>
+        </form>
       </div>
-    );
+    )
   }
-
 }
 
-export default Login;
+export default LoginForm

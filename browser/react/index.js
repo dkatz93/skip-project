@@ -7,7 +7,9 @@ import axios from 'axios'
 
 import BarsContainer from './containers/BarsContainer';
 import SingleBarContainer from './containers/SingleBarContainer';
-import Home from './components/Home'
+import Home from './components/Home';
+import Login from './components/Login';
+import Signup from './components/Signup';
 
 import {loadBar, loadBars, getBars, getBar} from './action-creators/bar-action-creator';
 
@@ -25,8 +27,11 @@ ReactDOM.render(
 		<Router history={browserHistory}>
 			<Route path="/" component={Home}>
 				<IndexRoute component = {BarsContainer} />
+				<Route path="/login" component = {Login} />
+				<Route path="/signup" component = {Signup} />
 				<Route path="/bars" onEnter={loadBarsOnEnter} component={BarsContainer} />
 				<Route path="/bars/:barName" onEnter={loadOneBarOnEnter} component={SingleBarContainer} />
+				<IndexRedirect to="/bars" />
 			</Route>
 		</Router>
 	</Provider>,
