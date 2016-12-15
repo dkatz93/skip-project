@@ -1,0 +1,30 @@
+on login, user can say i agree to location use or use my address
+
+
+
+- below is old html for skip
+
+// <div id="bar-div" className="col-m-3" key={i}>
+// 	<Link to={`/bars/${bar.id}`}>
+// 	<div className="col-xs-3">
+// 		<img id="imgStyle" src={bar.imgURL} />
+// 	</div>
+// 	<div className="col-xs-3">
+// 	  <div className="caption">
+// 	     <h5>
+// 	      <span className="bar-name">{ bar.name }</span>
+// 	     </h5>
+// 		</div>
+// 	</div>
+// 	</Link>
+// </div>
+
+#imgStyle {
+    position: inline-block;
+    max-height: 90px;
+    vertical-align: center;
+    opacity: 1;
+    text-align: center;
+    align-self: center;
+}
+http://uploads.thompsonhotels.com/2014/11/LP_Bar-1200x667.jpg

@@ -1,0 +1,171 @@
+.form-group {
+  marginTop: 20px;
+  width: 50%;
+  text-align: center;
+  margin: 0 auto; }
+
+.sorting {
+  width: 30%;
+  margin: 0 auto;
+  padding-bottom: 10px; }
+
+.sort {
+  background-color: black;
+  color: #9d9d9d;
+  border-radius: 10px;
+  border-color: black;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 2px; }
+
+.sort:hover {
+  color: white; }
+
+.sort:active {
+  color: white; }
+
+#bar-div {
+  margin-left: 20px;
+  background-color: black;
+  color: white;
+  height: 20%;
+  border-radius: 10px;
+  text-align: left;
+  padding-left: 10px;
+  vertical-align: center;
+  padding-top: 10px;
+  margin-top: 15px; }
+
+.pic-title {
+  text-align: center; }
+
+.imgStyle {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%); }
+
+.bar-page-pic {
+  display: block;
+  margin: 0 auto; }
+
+.imgWrapperStyle {
+  width: 100%;
+  padding-top: 100%;
+  position: relative;
+  background-color: transparent; }
+
+#bar-img-wrapper {
+  height: 30%;
+  width: 30%;
+  position: relative;
+  margin-top: 60px;
+  text-align: left;
+  padding-left: 20px; }
+
+#individ-bar-pic {
+  float: left;
+  text-align: left;
+  margin: 0 auto;
+  padding-top: 20px;
+  margin-right: 20px; }
+
+.bar-wrapper {
+  padding-top: 50px;
+  padding-left: 15px;
+  padding-right: 15px; }
+
+#thumbnailID {
+  background-color: black;
+  color: white; }
+
+.caption {
+  display: inline-block;
+  width: 70%;
+  color: white; }
+
+.captionVals {
+  color: white; }
+
+.favorite {
+  display: inline-block;
+  float: right;
+  padding-top: 9px;
+  padding-right: 5px;
+  border: none;
+  background-color: transparent; }
+
+.barname {
+  width: 70%; }
+
+span.glyphicon.glyphicon-heart {
+  font-size: 27px; }
+
+span.glyphicon.glyphicon-heart-empty {
+  font-size: 27px; }
+
+.singleBar-div {
+  display: inline;
+  margin: 0 auto; }
+
+.bar-container {
+  width: 100%;
+  height: 60px;
+  margin: 0 auto;
+  padding-left: 20px;
+  margin-top: 20px;
+  background-color: black;
+  text-decoration: none;
+  opacity: .5;
+  position: inline-block; }
+
+.singleBar-favorite {
+  float: center;
+  background-color: transparent;
+  border: none;
+  padding-left: 10px; }
+
+.bar-title {
+  background-color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  clear: left;
+  display: inline-block;
+  margin: 0 auto;
+  padding: 15px; }
+
+.outside-singleBar {
+  text-align: center; }
+
+html::after {
+  content: "";
+  background: url("http://localhost:3003/barimg2.png");
+  background-attachment: scroll;
+  background-size: cover;
+  background-repeat: repeat-y;
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+  background-color: gray; }
+
+.barInfo {
+  display: inline-block;
+  vertical-align: center;
+  float: top;
+  width: 30%; }
+
+.bar-info-wrap {
+  position: inline-block;
+  vertical-align: top; }
+
+.bar-name {
+  text-decoration: none;
+  position: inline;
+  color: #9d9d9d; }
+
+.bar-name:hover {
+  text-decoration: none;
+  color: white; }
