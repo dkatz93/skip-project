@@ -18,11 +18,11 @@ class LoginForm extends Component {
 
   login(e) {
     e.preventDefault();
-    axios.post('/api/sessions', {
+    axios.post('/api/login', {
       email: this.state.email,
       password: this.state.password
     })
-    .then(res => window.location.href = '/posts')
+    .then(res => window.location.href = '/bars')
     .catch(err => console.log('theres an error in the server'));
   }
 

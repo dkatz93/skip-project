@@ -3,7 +3,8 @@ var db = require('./db');
 
 var favoriteSchema = {
 	favorite: {
-		type: Sequelize.BOOLEAN
+		type: Sequelize.BOOLEAN,
+		defaultValue: false
 	}
 }
 

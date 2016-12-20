@@ -138,7 +138,7 @@ span.glyphicon.glyphicon-heart-empty {
 
 html::after {
   content: "";
-  background: url("http://localhost:3003/barimg2.png");
+  /*background: url("http://localhost:3003/barimg2.png");*/
   background-attachment: scroll;
   background-size: cover;
   background-repeat: repeat-y;
@@ -149,7 +149,7 @@ html::after {
   right: 0;
   position: absolute;
   z-index: -1;
-  background-color: gray; }
+  /*background-color: gray;*/ }
 
 .barInfo {
   display: inline-block;

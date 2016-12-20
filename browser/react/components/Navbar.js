@@ -57,6 +57,8 @@ class Navbar extends React.Component {
               <Link to="/contact" activeClassName="active">Contact</Link>
             </li>
           </ul> 
+          { this.renderLogout() }
+          { this.renderLoginSignup() }
         </div>
       </nav>
     );

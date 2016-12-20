@@ -20,21 +20,57 @@ router.get('/bars/:barId', (req, res, next)=>{
 	.catch(next)
 })
 
+router.get('/:userId/bars', (req, res, next)=>{
+	return Bar.findAll({ include: [Place]})
+	.then(bars =>{
+		res.json(bars)
+	})
+	.catch(next)
+})
 
-// router.post('/login', function (req, res, next) {
-//   User.findOne({
-//     where: req.body
-//   })
-//   .then(function (user) {
-//     if (!user) {
-//       res.sendStatus(401);
-//     } else {
-//       req.session.userId = user.id;
-//       res.sendStatus(204);
-//     }
-//   })
-//   .catch(next);
-// });
+router.get('/:userId/bars/:barId', (req, res, next)=>{
+	return Bar.findById(req.params.barId)
+	.then(bar => res.json(bar))
+	.catch(next)
+})
 
+router.post('/signup', (req, res, next) => {
+  return User.create(req.body)
+    .then(user => {
+      req.session.userId = user.id
+      res.json(user);
+    })
+    .catch(next);
+})
+
+router.post('/login', (req, res, next) => {
+  return User.findOne({ where: {
+    email: req.body.email
+  }})
+  .then(user => {
+    if(!user) {
+      var err = new Error('Unauthorized');
+      err.status = 401;
+      throw err;
+    }
+    return Promise.all([
+      user.checkPassword(req.body.password),
+      user
+    ])
+  })
+  .then(results => {
+    const [passwordIsValid, user] = results;
+    if(!passwordIsValid) {
+      var err = new Error('Unauthorized');
+      err.status = 401;
+      throw err;
+    }
+    req.session.userId = user.id;
+    console.log('REQ SESSION',req.session)
+    res.json(user);
+  })
+  
+  .catch(next)
+})
 
 module.exports = router

@@ -15,19 +15,19 @@ var path = require('path');
 
 app.use(volleyball)
 
-// app.use(session({
-// 	secret: 'ihopethisworks'
-// }))
+app.use(session({
+	secret: 'ihopethisworks'
+}))
 
 app.use(bodyParser.urlencoded({ extended:true})); 
 app.use(bodyParser.json());
 
-// app.use(function (req, res, next) {
-//   if (!req.session.counter) req.session.counter = 0;
-//   console.log('counter', ++req.session.counter);
-//   console.log('session', req.session);
-//   next();
-// });
+app.use(function (req, res, next) {
+  if (!req.session.counter) req.session.counter = 0;
+  console.log('counter', ++req.session.counter);
+  console.log('session', req.session);
+  next();
+});
 
 app.use('/api', router)
 
