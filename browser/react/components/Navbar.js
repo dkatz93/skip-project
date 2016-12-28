@@ -21,19 +21,24 @@ class Navbar extends React.Component {
     );
   }
 
+
   renderLogout() {
     return (
       <ul className="nav navbar-nav navbar-right">
+        <li><Link to="/bars" activeClassName="active">Welcome, {this.props.selectedUser.data}</Link>
+        </li>
         <li>
-        <button className="navbar-btn btn btn-default"
-          onClick={this.props.logout}>Logout
-        </button>
+        {/*<button className="navbar-btn btn btn-default"
+                  onClick={this.logoutClick.bind(this)}>Logout
+                </button>*/}
+        <Link to="/logout" activeClassName="active">Logout</Link>
         </li>
       </ul>
     );
   }
 
   render() {
+    console.log(this.props.selectedUser)
     return (
       <nav className="navbar navbar-inverse">
         <div className="navbar-header">
@@ -57,8 +62,9 @@ class Navbar extends React.Component {
               <Link to="/contact" activeClassName="active">Contact</Link>
             </li>
           </ul> 
-          { this.renderLogout() }
-          { this.renderLoginSignup() }
+          { this.props.selectedUser.data ?
+            this.renderLogout() :
+            this.renderLoginSignup()}
         </div>
       </nav>
     );

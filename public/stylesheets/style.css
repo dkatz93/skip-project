@@ -178,3 +178,8 @@ html::after {
 .login-form {
   text-align: left;
   padding-left: 10px; }
+
+.welcome {
+  color: white;
+  vertical-align: center;
+  position: relative; }

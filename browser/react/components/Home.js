@@ -1,9 +1,9 @@
 import React from 'react';
-import Navbar from './Navbar';
+import NavbarContainer from '../containers/NavbarContainer';
 
 const Home = (props) => (
   <div id="main" className="container-fluid">
-    <Navbar />
+    <NavbarContainer />
     { props.children && React.cloneElement(props.children, props) }
   </div>
 );

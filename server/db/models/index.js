@@ -9,6 +9,7 @@ Bar.belongsTo(Place);
 Users.belongsToMany(Bar, {through: Favorite})
 Bar.belongsToMany(Users, {through: Favorite})
 
+
 module.exports = {
 	Place: Place,
 	Bar: Bar,

@@ -8,10 +8,12 @@ import axios from 'axios'
 import BarsContainer from './containers/BarsContainer';
 import SingleBarContainer from './containers/SingleBarContainer';
 import Home from './components/Home';
-import Login from './components/Login';
-import Signup from './components/Signup';
+import LoginContainer from './containers/LoginContainer';
+import SignupContainer from './containers/SignupContainer';
 
 import {loadBar, loadBars, getBars, getBar} from './action-creators/bar-action-creator';
+
+import {logoutCurrentUser} from './action-creators/user-action-creator'
 
 const loadBarsOnEnter = () => {
 	store.dispatch(loadBars())
@@ -22,13 +24,18 @@ const loadOneBarOnEnter = (nextRouterState) => {
 	store.dispatch(loadBar(barId))
 }
 
+const logoutClick = () => {
+	store.dispatch(logoutCurrentUser())
+}
+
 ReactDOM.render(
 	<Provider store={store}>
 		<Router history={browserHistory}>
 			<Route path="/" component={Home}>
 				<IndexRoute component = {BarsContainer} />
-				<Route path="/login" component = {Login} />
-				<Route path="/signup" component = {Signup} />
+				<Route path="/login" component = {LoginContainer} />
+				<Route path="/signup" component = {SignupContainer} />
+				<Route path="/logout" component = {LoginContainer} onEnter = {logoutClick} />
 				<Route path="/bars" onEnter={loadBarsOnEnter} component={BarsContainer} />
 				<Route path="/bars/:barName" onEnter={loadOneBarOnEnter} component={SingleBarContainer} />
 				<IndexRedirect to="/bars" />

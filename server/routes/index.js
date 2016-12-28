@@ -7,7 +7,8 @@ const Favorite = require('../db/models/').Favorite
 const User = require('../db/models/').Users
 
 router.get('/bars', (req, res, next)=>{
-	return Bar.findAll({ include: [Place]})
+  console.log('USERID', req.session)
+	return Bar.findAll({ include: [Place, {model: User, where: { id: req.session.userId}}]})
 	.then(bars =>{
 		res.json(bars)
 	})
@@ -15,21 +16,7 @@ router.get('/bars', (req, res, next)=>{
 })
 
 router.get('/bars/:barId', (req, res, next)=>{
-	return Bar.findById(req.params.barId)
-	.then(bar => res.json(bar))
-	.catch(next)
-})
-
-router.get('/:userId/bars', (req, res, next)=>{
-	return Bar.findAll({ include: [Place]})
-	.then(bars =>{
-		res.json(bars)
-	})
-	.catch(next)
-})
-
-router.get('/:userId/bars/:barId', (req, res, next)=>{
-	return Bar.findById(req.params.barId)
+	return Bar.findOne( { where: {id: req.params.barId}, include: [{model: User, where: {id: req.session.userId}}]})
 	.then(bar => res.json(bar))
 	.catch(next)
 })
@@ -38,7 +25,18 @@ router.post('/signup', (req, res, next) => {
   return User.create(req.body)
     .then(user => {
       req.session.userId = user.id
-      res.json(user);
+      return user
+    })
+    .then(user => {
+      return User.findOne({where: {id: user.id}})
+      .then(user => {
+        Bar.findAll().then((bar)=> {
+          user.setBars(bar)
+        })
+      })
+    })
+    .then(user =>{
+      res.json(user)
     })
     .catch(next);
 })
@@ -71,6 +69,13 @@ router.post('/login', (req, res, next) => {
   })
   
   .catch(next)
+})
+
+router.get('/logout', (req, res, next) => {
+  req.session.destroy((err)=> {
+    if(err) console.log(err);
+    res.redirect('/login')
+  })
 })
 
 module.exports = router

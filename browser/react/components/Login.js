@@ -22,7 +22,12 @@ class LoginForm extends Component {
       email: this.state.email,
       password: this.state.password
     })
-    .then(res => window.location.href = '/bars')
+    .then(user => {
+      this.props.setCurrentUser(user)
+      console.log(this.props)
+      console.log('userid',user.id)
+      window.location.href = `/bars`
+    })
     .catch(err => console.log('theres an error in the server'));
   }
 
