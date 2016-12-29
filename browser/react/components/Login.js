@@ -18,17 +18,17 @@ class LoginForm extends Component {
 
   login(e) {
     e.preventDefault();
-    axios.post('/api/login', {
-      email: this.state.email,
-      password: this.state.password
-    })
-    .then(user => {
-      this.props.setCurrentUser(user)
-      console.log(this.props)
-      console.log('userid',user.id)
-      window.location.href = `/bars`
-    })
-    .catch(err => console.log('theres an error in the server'));
+    // axios.post('/api/login', {
+    //   email: this.state.email,
+    //   password: this.state.password
+    // })
+    // .then(user => {
+    //   this.props.setCurrentUser(user)
+    //   console.log(this.props)
+    //   console.log('userid',user.id)
+    //   window.location.href = `/bars`
+    // })
+    this.props.setCurrentUser({email: this.state.email, password: this.state.password})
   }
 
   render() {

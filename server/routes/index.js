@@ -21,6 +21,21 @@ router.get('/bars/:barId', (req, res, next)=>{
 	.catch(next)
 })
 
+router.put('/bars/:barId', (req, res, next)=>{
+  return Bar.findOne( { where: {id: req.params.barId}})
+  .then(bar => {
+    User.findOne({ where: {id: req.session.userId}, include: [{model: Bar, where: {id: req.params.barId}}] })
+    .then(user => {
+      // console.log('USER', user)
+      console.log('user.bars', user.bars)
+      console.log('user.bars.favorite', user.bars[0].favorite)
+      user.setBars(bar, {through: {favorite: !favorite}})
+    })
+  })
+  .then(bar => res.json(bar))
+  .catch(next)
+})
+
 router.post('/signup', (req, res, next) => {
   return User.create(req.body)
     .then(user => {

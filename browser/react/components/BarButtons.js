@@ -5,18 +5,7 @@ import AllBars from './AllBars'
 class FilterableBars extends React.Component {
 	constructor(props){
 		super(props);
-		this.state = {
-			inputValue: ''
-		};
-
-		this.handleChange = this.handleChange.bind(this)
 	}
-
-  handleChange(e){
-  	this.setState({
-  		inputValue: e.target.value
-  	})
-  }
 
   handleClickDistance(e){
   	e.preventDefault()
@@ -39,16 +28,11 @@ class FilterableBars extends React.Component {
   	})
   }
 
-  // handleClickWait(e){
-
-  // }
 
 	render(){
 
 		const handleChange = this.handleChange
-		const filteredBars = this.props.bars.filter(bar => {
-				return bar.name.toLowerCase().match(this.state.inputValue)
-			})
+		var filteredBars;
 
 		return (
 			<div>
@@ -56,7 +40,7 @@ class FilterableBars extends React.Component {
 		    		<button type="button" className="sort">
 		    			Distance
 		    		</button>
-		    		<button type="button" className="sort" onClick={this.handleClickFavs.bind(this)}>
+		    		<button type="button" className="sort" onClick={filteredBars = this.handleClickFavs.bind(this)}>
 		    			Favorites
 		    		</button>
 		    		<button type="button" className="sort">

@@ -7,16 +7,20 @@ class AllBars extends React.Component {
 		super(props)
 	}
 
-	// handleFavoriteClick(e){
-	// 	e.preventDefault()
-	// 	let bool = !this.state.bar.favorite
-	// 	axios.put()
-	// 	this.setState({this.state.bar.favorite: bool})
 
-	// }
+	handleFavoriteClick(barId, e){
+		e.preventDefault()
+		console.log(this.props)
+		this.props.setFavorite(barId)
+
+		// let bool = !this.props.bar.users[0].favorite.favorite
+		// axios.put()
+		// this.setState({this.state.bar.favorite: bool})
+	}
 
 	render(){
 		const bars = this.props.bars
+		console.log('user', this.props)
 		return (
 			<div>
 				<div className="bar-wrapper">
@@ -37,9 +41,11 @@ class AllBars extends React.Component {
 			                  <small className="captionVals"> minutes</small>
 			                </div>
 			              </Link>
-			                <button className="favorite">
+			                <button 
+			                	onClick = {this.handleFavoriteClick.bind(this, bar.id)}
+			                	className="favorite">
 			                	{
-			                		bar.favorite? <span className="glyphicon glyphicon-heart" aria-hidden="true">
+			                		bar.users[0].favorite.favorite ? <span className="glyphicon glyphicon-heart" aria-hidden="true">
 			                	 		</span>
 			                	 		:
 			                	 		<span className="glyphicon glyphicon-heart-empty" aria-hidden="true">

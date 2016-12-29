@@ -51,24 +51,18 @@ export const setUser = user => {
 	}
 };
 
-export const fetchUsers = () => dispatch => {
-  axios.get('/api/users')
-       .then(res => dispatch(getUsers(res.data)));
-}
-
-export const deleteUser = id => dispatch => {
-  dispatch(removeUser(id))
-  axios.delete(`/api/users/${id}`)
-       .catch(err => console.error(`Removing user: ${id} unsuccesful`, err))
-}
+// export const deleteUser = id => dispatch => {
+//   dispatch(removeUser(id))
+//   axios.delete(`/api/users/${id}`)
+//        .catch(err => console.error(`Removing user: ${id} unsuccesful`, err))
+// }
 
 
 export const addUser = user => dispatch => {
-  axios.post('/api/users', user)
+  axios.post('/api/signup', user)
        .then(res => dispatch(createUser(res.data)))
        .catch(err => console.error(`Creating user: ${user} unsuccesful`, err))
 }
-
 
 export const updateUser = user => dispatch => {
     axios.put(`/api/users/${id}`, user)
@@ -77,8 +71,12 @@ export const updateUser = user => dispatch => {
 }
 
 export const setCurrentUser = user => dispatch => {
-	axios.get(`/api/${user.id}/bars`, user)
-	.then(res => dispatch(setUser(res.data)))
+	axios.post(`/api/login`, user)
+	.then(res => {
+		console.log('resdata', res.data)
+		dispatch(setUser(res.data))
+		window.location.href = `/bars`
+	})
 	.catch(err => console.error(`Setting user: ${user} unsuccesful`, err))
 }
 
