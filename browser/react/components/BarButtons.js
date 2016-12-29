@@ -1,15 +1,25 @@
 import React from 'react';
 import {Link} from 'react-router';
-import AllBars from './AllBars'
+import FilterableBars from './FilterableBars';
+import axios from 'axios'
 
-class FilterableBars extends React.Component {
+class BarButtons extends React.Component {
 	constructor(props){
 		super(props);
+		this.state = {
+			filtered:  [...this.props.bars]
+		}
 	}
+
+	componentDidMount() {
+    axios.get('/api/bars')
+      .then(res => this.setState({ filtered: res.data }))
+  }
 
   handleClickDistance(e){
   	e.preventDefault()
-  	this.props.bars.sort((a, b)=> {
+  	var filteredResults = this.props.bars
+  	.sort((a, b)=> {
   		if (a.distance > b.distance) {
   			return 1
   		}
@@ -18,43 +28,38 @@ class FilterableBars extends React.Component {
   		}
   		return 0;
   	})
+  	this.setState({
+  		filtered: filteredResults
+  	})
 
   }
 
   handleClickFavs(e){
   	e.preventDefault()
-  	this.props.bars.filter((bar)=> {
-  		return bar.users[0].favorite.favorite
+  	var filteredResults = this.props.bars.filter((bar)=> {
+  			return bar.users[0].favorite.favorite
+  		})
+  	this.setState({
+  		filtered: filteredResults
   	})
   }
 
 
 	render(){
-
-		const handleChange = this.handleChange
-		var filteredBars;
-
 		return (
 			<div>
-		    	<div className="sorting">
-		    		<button type="button" className="sort">
-		    			Distance
-		    		</button>
-		    		<button type="button" className="sort" onClick={filteredBars = this.handleClickFavs.bind(this)}>
-		    			Favorites
-		    		</button>
-		    		<button type="button" className="sort">
-		    			Wait Time
-		    		</button>
-		    	</div>
-					<form className='form-group'>
-		      	<input
-		        	className='form-control'
-		        	placeholder="Search for a bar here!"
-		        	onChange={handleChange}
-		      	/>
-		    	</form>
-				<AllBars bars={filteredBars} setFavorite={this.props.setFavorite}/>
+	    	<div className="sorting">
+	    		<button type="button" className="sort" onClick={this.handleClickDistance.bind(this)}>
+	    			Distance
+	    		</button>
+	    		<button type="button" className="sort" onClick={this.handleClickFavs.bind(this)}>
+	    			Favorites
+	    		</button>
+	    		<button type="button" className="sort">
+	    			Wait Time
+	    		</button>
+	    	</div>
+				<FilterableBars bars={this.state.filtered} setFavorite={this.props.setFavorite}/>
 			</div>
 		)
 
@@ -62,4 +67,4 @@ class FilterableBars extends React.Component {
 	}
 }
 
-export default FilterableBars
+export default BarButtons

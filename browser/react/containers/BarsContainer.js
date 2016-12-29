@@ -1,7 +1,7 @@
 import React from 'react';
 import store from '../store'
 import {connect} from 'react-redux';
-import FilterableBars from '../components/FilterableBars';
+import BarButtons from '../components/BarButtons';
 import {setFavorite} from '../action-creators/bar-action-creator'
 
 function mapStateToProps(state){
@@ -12,4 +12,4 @@ function mapStateToProps(state){
 
 const mapDispatch = {setFavorite}
 
-export default connect(mapStateToProps, mapDispatch)(FilterableBars)
+export default connect(mapStateToProps, mapDispatch)(BarButtons)

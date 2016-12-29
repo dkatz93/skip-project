@@ -6,7 +6,8 @@ import {logoutUser} from '../action-creators/user-action-creator'
 
 function mapStateToProps(state){
 	return {
-		selectedUser: state.selectedUser
+		selectedUser: state.selectedUser,
+		bars: state.bars
 	}
 }
 

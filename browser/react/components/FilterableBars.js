@@ -18,26 +18,26 @@ class FilterableBars extends React.Component {
   	})
   }
 
-  handleClickDistance(e){
-  	e.preventDefault()
-  	this.props.bars.sort((a, b)=> {
-  		if (a.distance > b.distance) {
-  			return 1
-  		}
-  		if (a.distance < b.distance) {
-  			return -1
-  		}
-  		return 0;
-  	})
+  // handleClickDistance(e){
+  // 	e.preventDefault()
+  // 	this.props.bars.sort((a, b)=> {
+  // 		if (a.distance > b.distance) {
+  // 			return 1
+  // 		}
+  // 		if (a.distance < b.distance) {
+  // 			return -1
+  // 		}
+  // 		return 0;
+  // 	})
 
-  }
+  // }
 
-  handleClickFavs(e){
-  	e.preventDefault()
-  	this.props.bars.filter((bar)=> {
-  		return bar.users[0].favorite.favorite
-  	})
-  }
+  // handleClickFavs(e){
+  // 	e.preventDefault()
+  // 	this.props.bars.filter((bar)=> {
+  // 		return bar.users[0].favorite.favorite
+  // 	})
+  // }
 
   // handleClickWait(e){
 
@@ -52,7 +52,7 @@ class FilterableBars extends React.Component {
 
 		return (
 			<div>
-		    	<div className="sorting">
+		    	{/*<div className="sorting">
 		    		<button type="button" className="sort">
 		    			Distance
 		    		</button>
@@ -62,7 +62,7 @@ class FilterableBars extends React.Component {
 		    		<button type="button" className="sort">
 		    			Wait Time
 		    		</button>
-		    	</div>
+		    	</div>*/}
 					<form className='form-group'>
 		      	<input
 		        	className='form-control'

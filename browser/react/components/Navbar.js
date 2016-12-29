@@ -23,9 +23,10 @@ class Navbar extends React.Component {
 
 
   renderLogout() {
+    const name = this.props.bars[0].users[0].name.charAt(0).toUpperCase() + this.props.bars[0].users[0].name.slice(1)
     return (
       <ul className="nav navbar-nav navbar-right">
-        <li><Link to="/bars" activeClassName="active">Welcome, {this.props.selectedUser.data}</Link>
+        <li><Link to="/bars" activeClassName="active">Welcome, {name}</Link>
         </li>
         <li>
         {/*<button className="navbar-btn btn btn-default"
@@ -62,7 +63,7 @@ class Navbar extends React.Component {
               <Link to="/contact" activeClassName="active">Contact</Link>
             </li>
           </ul> 
-          { this.props.selectedUser.data ?
+          { this.props.bars[0] ?
             this.renderLogout() :
             this.renderLoginSignup()}
         </div>
