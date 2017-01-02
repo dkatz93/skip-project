@@ -2,7 +2,7 @@ import React from 'react';
 import store from '../store'
 import {connect} from 'react-redux';
 import BarButtons from '../components/BarButtons';
-import {setFavorite} from '../action-creators/bar-action-creator'
+import {setFavorite, loadBars} from '../action-creators/bar-action-creator'
 
 function mapStateToProps(state){
 	return {
@@ -10,6 +10,13 @@ function mapStateToProps(state){
 	}
 }
 
-const mapDispatch = {setFavorite}
+function mapDispatchToProps(dispatch){
+	return {
+		setFav: (bar) => dispatch(setFavorite(bar)),
+		getBars: () => dispatch(loadBars())
+	}
+}
 
-export default connect(mapStateToProps, mapDispatch)(BarButtons)
+// const mapDispatch = {setFavorite, loadBars}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BarButtons)

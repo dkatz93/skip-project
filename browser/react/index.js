@@ -24,21 +24,17 @@ const loadOneBarOnEnter = (nextRouterState) => {
 	store.dispatch(loadBar(barId))
 }
 
-const logoutClick = () => {
-	store.dispatch(logoutCurrentUser())
-}
-
 ReactDOM.render(
 	<Provider store={store}>
 		<Router history={browserHistory}>
 			<Route path="/" component={Home}>
-				<IndexRoute component = {BarsContainer} />
+				<IndexRoute component = {LoginContainer} />
 				<Route path="/login" component = {LoginContainer} />
 				<Route path="/signup" component = {SignupContainer} />
-				<Route path="/logout" component = {LoginContainer} onEnter = {logoutClick} />
+
 				<Route path="/bars" onEnter={loadBarsOnEnter} component={BarsContainer} />
 				<Route path="/bars/:barName" onEnter={loadOneBarOnEnter} component={SingleBarContainer} />
-				<IndexRedirect to="/bars" />
+				<IndexRedirect to="/login" />
 			</Route>
 		</Router>
 	</Provider>,

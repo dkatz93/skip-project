@@ -70,7 +70,7 @@ class FilterableBars extends React.Component {
 		        	onChange={handleChange}
 		      	/>
 		    	</form>
-				<AllBars bars={filteredBars} setFavorite={this.props.setFavorite}/>
+				<AllBars bars={filteredBars} setFavorite={this.props.setFavorite} loadBars={this.props.loadBars}/>
 			</div>
 		)
 

@@ -1,10 +1,14 @@
-import {GET_BARS, GET_BAR, getBars, getBar, SET_FAV, setFav} from '../action-creators/bar-action-creator';
+import {GET_BARS, GET_BAR, getBars, getBar, SET_FAV, GET_DIST, getDist, setFav, UPDATE_WAIT, updateWait} from '../action-creators/bar-action-creator';
 
 import {GET_USERS, CREATE_USER, REMOVE_USER, SET_CURRENT_USER, UPDATE_USER, LOGOUT_USER, logoutUser, getUsers, createUser, removeUser, update, setUser} from '../action-creators/user-action-creator';
 
 const initialState = {
 	bars: [],
-	selectedBar: {},
+	selectedBar: {
+		place: {},
+		users: [{favorite: {}}],
+		distance: ''
+	},
 	selectedUser: {}
 }
 
@@ -36,6 +40,13 @@ export default function(state=initialState, action){
 			break;
 		case SET_FAV:
 			newState.selectedBar = action.selectedBar
+			break;
+		case GET_DIST:
+			newState.distance = action.distance
+			break;
+		case UPDATE_WAIT:
+			newState.selectedBar = action.selectedBar
+			break;
 		default:
 			return state;
 	}

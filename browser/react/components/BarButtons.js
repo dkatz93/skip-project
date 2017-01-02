@@ -59,7 +59,7 @@ class BarButtons extends React.Component {
 	    			Wait Time
 	    		</button>
 	    	</div>
-				<FilterableBars bars={this.state.filtered} setFavorite={this.props.setFavorite}/>
+				<FilterableBars bars={this.state.filtered} setFavorite={this.props.setFav} loadBars={this.props.getBars}/>
 			</div>
 		)
 

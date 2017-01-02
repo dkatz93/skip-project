@@ -1,5 +1,5 @@
 .form-group {
-	marginTop: 20px;
+	margin-top: 20px;
 	width: 50%;
 	text-align: center;
 	margin: 0 auto;
@@ -78,6 +78,18 @@
 	padding-top: 20px;
 	margin-right: 20px;
 
+}
+
+#oneBarRight {
+	text-align: left;
+	padding-left: 20px;
+	display: inline-block;
+	position: relative;
+}
+
+.oneBarText {
+	text-align: center;
+	width: 70%
 }
 
 .bar-wrapper {
@@ -174,16 +186,16 @@ html::after {
   z-index: -1;   
   /*background-color: gray;*/
 }
+.oneBar {
+	display: inline-block;
+}
 
 .barInfo {
-	display: inline-block;
-	vertical-align: center;
-	float: top;
-	width: 30%
-}
-.bar-info-wrap {
-	position: inline-block;
-	vertical-align: top
+	width: 60%;
+	position: relative;
+	display: inline;
+	margin-top: 60px;
+	text-align: right;
 }
 
 .bar-name {
@@ -207,8 +219,27 @@ html::after {
 	padding-left: 10px
 }
 
-.welcome {
-	color: white;
+.welcomeName {
+	color: #9d9d9d;
 	vertical-align: center;
 	position: relative;
+	padding-top: 15px;
+	padding-right: 10px
 }
+
+#wait-time-form {
+	text-align: left;
+	margin-left: 10px;
+	padding-left: 10px;
+	width: 80%;
+}
+
+.waitHeader {
+	padding-left: 17px;
+}
+
+.barData {
+	padding-left: 17px
+}
+
+

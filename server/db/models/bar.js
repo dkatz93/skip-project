@@ -11,6 +11,9 @@ var barSchema = {
 	},
 	imgURL: {
 		type: Sequelize.STRING
+	},
+	wait: {
+		type: Sequelize.INTEGER
 	}
 
 }

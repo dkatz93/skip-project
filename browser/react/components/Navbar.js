@@ -21,18 +21,26 @@ class Navbar extends React.Component {
     );
   }
 
+  logoutClick(){
+    this.props.logoutCurrentUser()
+    window.location.href = '/login'
+
+  }
+
 
   renderLogout() {
     const name = this.props.bars[0].users[0].name.charAt(0).toUpperCase() + this.props.bars[0].users[0].name.slice(1)
     return (
       <ul className="nav navbar-nav navbar-right">
-        <li><Link to="/bars" activeClassName="active">Welcome, {name}</Link>
+        <li>{/*<Link to="/bars" activeClassName="active">*/}
+          <div className = "welcomeName">
+            Welcome, {name}
+          </div>
         </li>
         <li>
-        {/*<button className="navbar-btn btn btn-default"
+        <button className="navbar-btn btn btn-default"
                   onClick={this.logoutClick.bind(this)}>Logout
-                </button>*/}
-        <Link to="/logout" activeClassName="active">Logout</Link>
+                </button>
         </li>
       </ul>
     );

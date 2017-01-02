@@ -1,5 +1,18 @@
+things to do:
+	- add a message for password length/ incorrect password
+	- have log out logout the user
+	- google maps api
+	- favorite button
+	- enter wait time
+
+done:
+	- get login/logout toggle
+	- get req.sessions to work
+
 on login, user can say i agree to location use or use my address
 
+
+api key: AIzaSyBZnkBvAMu0WvjalkseuuYc4mBBVjbgv5I
 
 
 - below is old html for skip
@@ -28,3 +41,95 @@ on login, user can say i agree to location use or use my address
     align-self: center;
 }
 http://uploads.thompsonhotels.com/2014/11/LP_Bar-1200x667.jpg
+
+
+
+<form className='form-group' id="wait-time-form">
+	<h4> Wait Time: </h4>
+	<input
+  	className='form-control'
+  	placeholder="Enter the wait time here!"
+	/>
+	<p></p>
+	<button type="submit" className="btn btn-primary">Submit</button>
+	<p>{bar.rating}</p>
+</form>
+
+
+
+import React from 'react';
+import {Link} from 'react-router';
+
+class OneBar extends React.Component{
+	constructor(props){
+		super(props)
+		this.state = {
+			inputValue: ''
+		}
+	}
+
+	initMap(){
+		var origin = this.props.selectedBar.users[0].address
+		var destination = '77 West Huron St.'
+		// this.props.selectedBar.address
+
+		var service = new google.maps.DistanceMatrixService();
+    service.getDistanceMatrix({
+      origins: [origin],
+      destinations: [destination],
+      travelMode: 'DRIVING',
+      unitSystem: google.maps.UnitSystem.METRIC,
+      avoidHighways: false,
+      avoidTolls: false
+    }, function(response, status) {
+			var dist = document.getElementById("dist");
+      if (status !== 'OK') {
+        alert('Error was: ' + status);
+      } else {
+        var originList = response.originAddresses;
+        var destinationList = response.destinationAddresses;
+        dist.value = response.rows[0].elements[0].distance.text;
+	      }
+	  })
+	}
+
+	render(){
+		const bar = this.props.selectedBar
+		google.maps.event.addDomListener(window, this.initMap)
+		return (
+				<div className="outside-singleBar">
+					<h1 className="bar-title">{bar.name}
+					<button className="singleBar-favorite">
+		        {this.props.selectedBar.users[0].favorite.favorite ? 
+		        	<span className="glyphicon glyphicon-heart" aria-hidden="true"></span>
+		    	 		:
+		    	 		<span className="glyphicon glyphicon-heart-empty" aria-hidden="true">
+		    	 		</span>
+		   			}
+		      </button>
+		      </h1>   
+				<div className="row">
+			  	<div className="col-xs-3" id="bar-img-wrapper">
+			      <img className="imgStyle" id="individ-bar-pic" src={ bar.imgURL }/>
+			    </div>
+			    <div className="col-xs-8" id="oneBarRight">
+			    	<form className="form-inline">
+			    		<h4 className="waitHeader">Enter the Wait Time:</h4>
+						  <div className="form-group">
+						    <div className="input-group">
+						      <input type="text" className="form-control" placeholder="Time"/>
+						      <div className="input-group-addon">mins</div>
+						    </div>
+						  </div>
+						  <button type="submit" className="btn btn-primary">Submit</button>
+						  <div>Distance:</div>
+						  <p id="dist"></p>
+						</form>
+			    </div>
+				 </div>
+			</div> 
+		)
+	}
+}
+
+export default OneBar

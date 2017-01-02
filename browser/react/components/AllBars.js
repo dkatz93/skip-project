@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
-import axios from 'axios'
+import axios from 'axios';
+import store from '../store'
 
 class AllBars extends React.Component {
 	constructor(props){
@@ -8,10 +9,10 @@ class AllBars extends React.Component {
 	}
 
 
-	handleFavoriteClick(barId, e){
+	handleFavoriteClick(bar, e){
 		e.preventDefault()
 		console.log(this.props)
-		this.props.setFavorite(barId)
+		this.props.setFavorite(bar.id)
 
 		// let bool = !this.props.bar.users[0].favorite.favorite
 		// axios.put()
@@ -20,7 +21,6 @@ class AllBars extends React.Component {
 
 	render(){
 		const bars = this.props.bars
-		console.log('user', this.props)
 		return (
 			<div>
 				<div className="bar-wrapper">
@@ -38,11 +38,11 @@ class AllBars extends React.Component {
 			                  <h5 className="captionVals">
 			                    <span>{ bar.name }</span>
 			                  </h5>
-			                  <small className="captionVals"> minutes</small>
+			                  <small className="captionVals">Wait: {bar.wait ? bar.wait + " minutes" : "No data"} </small>
 			                </div>
 			              </Link>
 			                <button 
-			                	onClick = {this.handleFavoriteClick.bind(this, bar.id)}
+			                	onClick = {this.handleFavoriteClick.bind(this, bar)}
 			                	className="favorite">
 			                	{
 			                		bar.users[0].favorite.favorite ? <span className="glyphicon glyphicon-heart" aria-hidden="true">

@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import  Navbar  from '../components/Navbar';
-import {logoutUser} from '../action-creators/user-action-creator'
+import {logoutCurrentUser} from '../action-creators/user-action-creator'
 
 
 function mapStateToProps(state){
@@ -11,6 +11,6 @@ function mapStateToProps(state){
 	}
 }
 
-const mapDispatch = {logoutUser}
+const mapDispatch = {logoutCurrentUser}
 
 export default connect(mapStateToProps, mapDispatch)(Navbar)
