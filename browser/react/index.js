@@ -10,6 +10,7 @@ import SingleBarContainer from './containers/SingleBarContainer';
 import Home from './components/Home';
 import LoginContainer from './containers/LoginContainer';
 import SignupContainer from './containers/SignupContainer';
+import AccountContainer from './containers/AccountContainer';
 
 import {loadBar, loadBars, getBars, getBar} from './action-creators/bar-action-creator';
 
@@ -31,6 +32,7 @@ ReactDOM.render(
 				<IndexRoute component = {LoginContainer} />
 				<Route path="/login" component = {LoginContainer} />
 				<Route path="/signup" component = {SignupContainer} />
+				<Route path="/account" component = {AccountContainer} />
 
 				<Route path="/bars" onEnter={loadBarsOnEnter} component={BarsContainer} />
 				<Route path="/bars/:barName" onEnter={loadOneBarOnEnter} component={SingleBarContainer} />

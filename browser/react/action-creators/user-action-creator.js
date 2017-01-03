@@ -44,10 +44,10 @@ export const update = user => {
 };
 
 
-export const setUser = user => {
+export const setUser = selectedUser => {
 	return {
 		type: SET_CURRENT_USER,
-		user
+		selectedUser
 	}
 };
 
@@ -70,14 +70,17 @@ export const updateUser = user => dispatch => {
          .catch(err => console.error(`Creating user: ${user} unsuccesful`, err))
 }
 
-export const setCurrentUser = user => dispatch => {
-	axios.post(`/api/login`, user)
-	.then(res => {
-		console.log('resdata', res.data)
-		dispatch(setUser(res.data))
-		window.location.href = `/bars`
-	})
-	.catch(err => console.error(`Setting user: ${user} unsuccesful`, err))
+export const setCurrentUser = user => {
+	return(dispatch) => {
+		console.log('user', user)
+		axios.post(`/api/login`, user)
+		.then(res => {
+			console.log('resdata', res.data)
+			dispatch(setUser(res.data))
+		})
+		.then(()=> window.location.href = `/bars`)
+		.catch(err => console.error(`Setting user: ${user} unsuccesful`, err))
+	}
 }
 
 export const logoutCurrentUser = () => dispatch => {

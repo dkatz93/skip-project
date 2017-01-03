@@ -32,6 +32,7 @@ class LoginForm extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <div>
         <form className="login-form" onSubmit={this.login.bind(this)}>

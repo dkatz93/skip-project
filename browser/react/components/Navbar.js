@@ -47,7 +47,6 @@ class Navbar extends React.Component {
   }
 
   render() {
-    console.log(this.props.selectedUser)
     return (
       <nav className="navbar navbar-inverse">
         <div className="navbar-header">
@@ -65,7 +64,7 @@ class Navbar extends React.Component {
               <Link to="/bars" activeClassName="active">Home</Link>
             </li>
             <li>
-              <Link to="/about" activeClassName="active">About</Link>
+              <Link to="/account" activeClassName="active">Account</Link>
             </li>
             <li>
               <Link to="/contact" activeClassName="active">Contact</Link>

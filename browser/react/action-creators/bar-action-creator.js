@@ -47,10 +47,10 @@ export const setFavorite = (barId) => {
 	}
 }
 
-export const updateWait = function(selectedBar){
+export const updateWait = function(wait){
 	return {
 		type: UPDATE_WAIT,
-		selectedBar
+		wait
 	}
 }
 

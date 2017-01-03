@@ -7,7 +7,8 @@ const initialState = {
 	selectedBar: {
 		place: {},
 		users: [{favorite: {}}],
-		distance: ''
+		distance: '',
+		wait: null
 	},
 	selectedUser: {}
 }
@@ -33,11 +34,11 @@ export default function(state=initialState, action){
 			})
 			break;
 		case SET_CURRENT_USER: 
-			newState.selectedUser = action.user
+			newState.selectedUser = action.selectedUser
 			break;
-		case LOGOUT_USER: 
-			newState.selectedUser = state.selectedUser
-			break;
+		// case LOGOUT_USER: 
+		// 	newState.selectedUser = state.selectedUser
+		// 	break;
 		case SET_FAV:
 			newState.selectedBar = action.selectedBar
 			break;
@@ -45,7 +46,7 @@ export default function(state=initialState, action){
 			newState.distance = action.distance
 			break;
 		case UPDATE_WAIT:
-			newState.selectedBar = action.selectedBar
+			newState.selectedBar.wait = action.selectedBar.wait
 			break;
 		default:
 			return state;

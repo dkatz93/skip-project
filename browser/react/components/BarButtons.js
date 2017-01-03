@@ -34,6 +34,24 @@ class BarButtons extends React.Component {
 
   }
 
+  handleClickWaitTime(e){
+    e.preventDefault()
+    var filteredResults = this.props.bars
+    .sort((a, b)=> {
+      if (a.wait > b.wait) {
+        return 1
+      }
+      if (a.wait < b.wait) {
+        return -1
+      }
+      return 0;
+    })
+    this.setState({
+      filtered: filteredResults
+    })
+
+  }
+
   handleClickFavs(e){
   	e.preventDefault()
   	var filteredResults = this.props.bars.filter((bar)=> {
@@ -55,7 +73,7 @@ class BarButtons extends React.Component {
 	    		<button type="button" className="sort" onClick={this.handleClickFavs.bind(this)}>
 	    			Favorites
 	    		</button>
-	    		<button type="button" className="sort">
+	    		<button type="button" className="sort" onClick={this.handleClickWaitTime.bind(this)}>
 	    			Wait Time
 	    		</button>
 	    	</div>
